@@ -50,6 +50,22 @@ void consulta(string entrada, string nome_arquivo){
 	limpa_tela();
 }
 
+void exportar(string entrada1, string entrada2, string entrada3, string nome_arquivo_ent, string nome_arquivo_saida){
+	ifstream arquivo;
+	ofstream arquivo_saida;
+	arquivo.open(nome_arquivo_ent);
+	arquivo_saida.open(nome_arquivo_saida);
+	string linha;
+	while(!arquivo.eof()){
+		getline(arquivo,linha);
+		if((linha.find(entrada1)!=string::npos) && (linha.find(entrada2)!=string::npos) && (linha.find(entrada3)!=string::npos)){
+			arquivo_saida << linha << endl;
+		}
+	}
+	arquivo_saida.close();
+	arquivo.close();
+}
+
 void remove_cadastro(int remove_id, string nome_arquivo){
 	ifstream arquivo_in;
 	ofstream arquivo_out;

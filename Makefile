@@ -41,12 +41,27 @@ petfera.so: $(SRC_DIR)/anfibio.cpp $(SRC_DIR)/animal.cpp $(SRC_DIR)/animalSilves
 	@echo "+++ [BIBLIOTECA DINAMICA CRIADA EM $(LIB_DIR)/$@] +++"
 
 petfera_static.exe:
-	$(CC) $(CFLAGS) $(SRC_DIR)/main.cpp $(LIB_DIR)/petfera.a -o $(BIN_DIR)/$@
+	$(CC) $(CFLAGS) $(SRC_DIR)/petfera.cpp $(LIB_DIR)/petfera.a -o $(BIN_DIR)/$@
 	@echo "+++[CRIADO EXCUTAVEL STATIC EM $(BIN_DIR)/$@]+++"
 
 petfera_dinamic.exe:
 	#sudo mv $(HOME)/PETFERA/lib/petfera.so /usr/lib
 	#sudo ldconfig
 	#ldconfig -p | grep petfera
-	$(CC) $(CFLAGS) $(SRC_DIR)/main.cpp $(LIB_DIR)/petfera.so -o $(BIN_DIR)/$@
+	$(CC) $(CFLAGS) $(SRC_DIR)/petfera.cpp $(LIB_DIR)/petfera.so -o $(BIN_DIR)/$@
 	@echo "+++[CRIADO EXCUTAVEL DINAMIC EM $(BIN_DIR)/$@]+++"
+
+exportar_static.exe:
+	$(CC) $(CFLAGS) $(SRC_DIR)/exportar.cpp $(LIB_DIR)/petfera.a -o $(BIN_DIR)/$@
+	@echo "+++[CRIADO EXCUTAVEL STATIC EM $(BIN_DIR)/$@]+++"
+
+exportar_dinamic.exe:
+	#sudo mv $(HOME)/PETFERA/lib/exportar.so /usr/lib
+	#sudo ldconfig
+	#ldconfig -p | grep exportar
+	$(CC) $(CFLAGS) $(SRC_DIR)/exportar.cpp $(LIB_DIR)/exportar.so -o $(BIN_DIR)/$@
+	@echo "+++[CRIADO EXCUTAVEL DINAMIC EM $(BIN_DIR)/$@]+++"
+
+clean:
+	rm -r ./bin/*.exe
+	rm -r ./build/*.o 
